@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import re
+import threading
 from urlparse import urljoin
 
 import requests
@@ -115,9 +116,11 @@ def download_site():
 
     for url in page_urls:
         if url == '/':
-            download_page(url, soup)  # reduce work
+            args = (url, soup)  # reduce work
         else:
-            download_page(url)
+            args = (url,)
+        thread = threading.Thread(target=download_page, args=args)
+        thread.start()
 
 
 if __name__ == '__main__':

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+if [ -z "$1" ]
+  then
+    echo "No commit message supplied"
+    exit 1
+fi
 python build.py
-echo "Enter commit message: "
-read message
 git add --all :/
-git commit -m "$message"
+git commit -m "$1"
 git push origin master

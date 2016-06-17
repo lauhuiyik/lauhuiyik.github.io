@@ -17,6 +17,6 @@ $('form .wsite-button').click(function() {
     $form.parent().append('<span class="success-msg">Awesome! Will get back to you soon</span>');
   })
   .fail(function() {
-    $form.prepend('<span class="fail-msg">Oops, something went wrong.');
+    $form.prepend('<span class="fail-msg">Oops, something went wrong.</span>');
   });
 });

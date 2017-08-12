@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import re
 import threading
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
@@ -50,6 +50,7 @@ def apply_custom_changes(url, soup):
 
 
 def apply_custom_output(url, html):
+    html = html.decode('utf-8')
     if url == '/':
         return re.sub(r'>\s+</textarea>', '></textarea>', html)
     return html
@@ -98,7 +99,7 @@ def download_page(url, soup=None):
         html = soup.prettify().encode('utf-8')
         output = apply_custom_output(url, html)
         f.write(output)
-        print filename
+        print(filename)
 
 
 def download_site():
